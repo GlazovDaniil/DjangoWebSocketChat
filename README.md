@@ -1,0 +1,2 @@
+# DjangoWebSocketChat
+Django Websocket Chat
