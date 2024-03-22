@@ -1,12 +1,10 @@
 import base64
 import json
 import secrets
-from datetime import datetime
 
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from django.core.files.base import ContentFile
-from rest_framework.authtoken.models import Token
 
 from users.models import MyUser
 from .models import Message, Conversation
@@ -46,7 +44,6 @@ class ChatConsumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         text_data_json["author_id"] = self.scope['user'].id
 
-        print(text_data_json)
         # Send message to room group
         chat_type = {"type": "chat_message"}
         return_dict = {**chat_type, **text_data_json}
